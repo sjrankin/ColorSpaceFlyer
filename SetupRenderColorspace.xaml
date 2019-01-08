@@ -1,0 +1,177 @@
+﻿<Window x:Class="ColorSpaceFlyer.SetupRenderColorspace"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ColorSpaceFlyer"
+        mc:Ignorable="d"
+        Title="Render Color Space Setup" Height="240" Width="340">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="33"/>
+        </Grid.RowDefinitions>
+        <Grid Background="WhiteSmoke"
+              Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Vertical"
+                        Margin="2"
+                        Grid.Row="0">
+                <StackPanel Orientation="Horizontal"
+                            Margin="2">
+                    <TextBlock VerticalAlignment="Center">
+                        Color space
+                    </TextBlock>
+                    <ComboBox Name="ColorSpaceCombo"
+                              SelectionChanged="HandleColorSpaceChanged"
+                              Width="70"
+                              Margin="5,0,0,0" SelectedIndex="0">
+                        <ComboBoxItem Tag="RGB">
+                            RGB
+                        </ComboBoxItem>
+                        <ComboBoxItem Tag="HSV">
+                            HSV
+                        </ComboBoxItem>
+                        <ComboBoxItem Tag="CMY">
+                            CMY
+                        </ComboBoxItem>
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            Margin="2">
+                    <TextBlock VerticalAlignment="Center">
+                        Axis order
+                    </TextBlock>
+                    <ComboBox Name="AxisOrderCombo"
+                              Width="70"
+                              Margin="5,0,0,0" SelectedIndex="0">
+                        <ComboBoxItem Tag="1">
+                            RGB
+                        </ComboBoxItem>
+                        <ComboBoxItem Tag="2">
+                            RBG
+                        </ComboBoxItem>
+                        <ComboBoxItem Tag="3">
+                            GRB
+                        </ComboBoxItem>
+                        <ComboBoxItem Tag="4">
+                            GBR
+                        </ComboBoxItem>
+                        <ComboBoxItem Tag="5">
+                            BRG
+                        </ComboBoxItem>
+                        <ComboBoxItem Tag="6">
+                            BGR
+                        </ComboBoxItem>
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            Margin="2">
+                    <TextBlock VerticalAlignment="Center">
+                        Frame width
+                    </TextBlock>
+                    <TextBox Name="FrameWidth" VerticalContentAlignment="Center"
+                             Width="40"
+                             Height="22"
+                             Margin="5,1,20,1">
+                        512
+                    </TextBox>
+                    <TextBlock VerticalAlignment="Center">
+                        Frame height
+                    </TextBlock>
+                    <TextBox Name="FrameHeight" VerticalContentAlignment="Center"
+                             Width="40"
+                             Height="22"
+                             Margin="5,1,20,1">
+                        512
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            Margin="2">
+                    <TextBlock VerticalAlignment="Center">
+                        Frame count
+                    </TextBlock>
+                    <TextBox Name="FrameCount" VerticalContentAlignment="Center"
+                             Width="40"
+                             Height="22"
+                             Margin="5,1,20,1">
+                        256
+                    </TextBox>
+                    <CheckBox Name="AllFramesCheck"
+                              IsChecked="True"
+                              Margin="2"
+                              Checked="HandleAllFramesCheckChanged"
+                              Unchecked="HandleAllFramesCheckChanged"
+                              VerticalAlignment="Center">
+                        Render all frames
+                    </CheckBox>
+                </StackPanel>
+                <CheckBox Margin="2"
+                          Name="OverwriteOldFiles"
+                          IsChecked="True">
+                    Overwrite existing files
+                </CheckBox>
+            </StackPanel>
+            <Border Grid.Row="1"
+                    BorderBrush="Black"
+                    BorderThickness="0,1,0,1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="60"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Name="RenderStatus"
+                           VerticalAlignment="Center"
+                           Margin="2"
+                           FontSize="14"
+                           FontWeight="Bold"
+                               Grid.Column="0"
+                           TextTrimming="CharacterEllipsis">
+                    Render status
+                    </TextBlock>
+                    <TextBlock Name="DurationBlock"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Right"
+                               Margin="2"
+                               FontWeight="Normal"
+                               FontSize="10"
+                               Grid.Column="1">
+                        0
+                    </TextBlock>
+                </Grid>
+            </Border>
+        </Grid>
+        <Border Grid.Row="1">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="WhiteSmoke" Offset="0.0"/>
+                    <GradientStop Color="LightGray" Offset="1.0"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0"
+                        Width="75"
+                        Height="22"
+                        IsDefault="True"
+                        Name="RenderButton"
+                        Click="RenderFramesHandler">
+                    Render
+                </Button>
+                <Button Grid.Column="1"
+                        Width="75"
+                        Height="22"
+                        IsCancel="True"
+                        Click="CloseHandler">
+                    Close
+                </Button>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
